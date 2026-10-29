@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b3b5a">
+  <meta name="description" content="Simulateur pédagogique pour s'entraîner à conduire un entretien de parcours professionnel.">
+  <title>Cap EPP | Simulateur d'entretien de parcours professionnel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <header class="hero">
+    <div class="hero__inner">
+      <div><span class="eyebrow">FORMATION RH • JEU DE RÔLES</span><h1>Cap EPP</h1><p>Préparer, conduire et conclure un entretien de parcours professionnel avec méthode.</p></div>
+      <button class="icon-btn" id="helpBtn" aria-label="Afficher l'aide">?</button>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <nav class="tabs" aria-label="Navigation principale">
+      <button class="tab active" data-view="home">Accueil</button>
+      <button class="tab" data-view="play">Mise en situation</button>
+      <button class="tab" data-view="quiz">Quiz</button>
+      <button class="tab" data-view="memo">Repères</button>
+    </nav>
+
+    <section id="home" class="view active">
+      <div class="card splash">
+        <div class="badge">Version 2026</div>
+        <h2>Un entraînement en trio, immédiatement exploitable</h2>
+        <p>Choisissez une situation ou laissez l'outil tirer au sort. Chaque participant reçoit sa fiche : personne conduisant l'entretien, salarié et observateur.</p>
+        <div class="stats"><div><strong>8</strong><span>situations réalistes</span></div><div><strong>3</strong><span>rôles complémentaires</span></div><div><strong>4</strong><span>temps de jeu</span></div></div>
+        <button class="primary" data-go="play">Lancer une simulation</button>
+      </div>
+      <div class="grid3">
+        <article class="card"><span class="num">1</span><h3>Préparer</h3><p>Clarifier le contexte, les informations disponibles, l'objectif et les questions d'exploration.</p></article>
+        <article class="card"><span class="num">2</span><h3>Dialoguer</h3><p>Écouter, reformuler, explorer les compétences, les aspirations et les besoins de développement.</p></article>
+        <article class="card"><span class="num">3</span><h3>Formaliser</h3><p>Conclure par des pistes réalistes, des responsabilités claires et un suivi traçable.</p></article>
+      </div>
+    </section>
+
+    <section id="play" class="view">
+      <div class="card setup" id="setupPanel">
+        <h2>Paramétrer la mise en situation</h2>
+        <label for="scenarioSelect">Situation</label>
+        <select id="scenarioSelect"></select>
+        <div class="two"><label>Durée de l'entretien<select id="duration"><option value="5">5 min • découverte</option><option value="10" selected>10 min • entraînement</option><option value="15">15 min • approfondissement</option></select></label><label>Niveau<select id="level"><option value="guide">Guidé</option><option value="standard" selected>Standard</option><option value="challenge">Challenge</option></select></label></div>
+        <label class="switch"><input type="checkbox" id="randomRoles"><span></span> Tirer également les rôles au sort</label>
+        <div class="actions"><button class="secondary" id="randomBtn">Surprenez-moi</button><button class="primary" id="startBtn">Préparer la partie</button></div>
+      </div>
+
+      <div id="gamePanel" class="hidden">
+        <div class="gamebar card"><div><span class="eyebrow" id="scenarioTag"></span><h2 id="scenarioTitle"></h2></div><div class="timer" aria-live="polite"><span id="timer">10:00</span><button id="timerBtn">Démarrer</button></div></div>
+        <div class="role-tabs" role="tablist"><button class="role-tab active" data-role="manager">Conduite</button><button class="role-tab" data-role="employee">Salarié</button><button class="role-tab" data-role="observer">Observation</button></div>
+        <article class="card role-card" id="roleContent"></article>
+        <div class="actions sticky"><button class="secondary" id="resetBtn">Nouvelle situation</button><button class="primary" id="debriefBtn">Débriefer</button></div>
+      </div>
+
+      <div id="debriefPanel" class="hidden">
+        <div class="card"><span class="eyebrow">DÉBRIEFING</span><h2>Transformer l'expérience en apprentissage</h2><div id="ratingList" class="rating-list"></div><label for="lesson">Le point clé que je retiens</label><textarea id="lesson" rows="3" placeholder="Ex. : différer une discussion sur la performance pour rester dans le périmètre de l'EPP..."></textarea><div class="scorebox" aria-live="polite"><span>Score d'observation</span><strong id="score">0 / 20</strong></div><button class="primary" id="saveBtn">Enregistrer le bilan sur cet appareil</button><p class="micro" id="saveMsg"></p></div>
+      </div>
+    </section>
+
+    <section id="quiz" class="view"><div class="card"><span class="eyebrow">VRAI OU FAUX ?</span><h2>Testez vos repères</h2><div id="quizBox"></div></div></section>
+
+    <section id="memo" class="view">
+      <div class="card"><span class="eyebrow">CADRE 2026</span><h2>Le périmètre en un coup d'œil</h2><div class="do-dont"><div><h3>À explorer</h3><ul><li>Compétences et qualifications mobilisées</li><li>Parcours et perspectives d'évolution</li><li>Besoins de formation</li><li>Projet de mobilité ou de reconversion</li><li>CPF, CEP, VAE et bilan de compétences</li></ul></div><div><h3>À ne pas confondre</h3><ul><li>Évaluation de la performance passée</li><li>Fixation des objectifs opérationnels</li><li>Recadrage disciplinaire</li><li>Négociation immédiate d'une augmentation</li><li>Promesse d'une promotion non validée</li></ul></div></div></div>
+      <div class="grid2"><article class="card"><h3>Rythme général</h3><p>Premier entretien dans l'année suivant l'embauche, puis tous les 4 ans. État des lieux récapitulatif tous les 8 ans.</p></article><article class="card"><h3>Trace</h3><p>Formalisez les éléments abordés, les pistes retenues, les actions, les responsables et les échéances. Remettez une copie au salarié.</p></article></div>
+      <div class="notice"><strong>Point de vigilance :</strong> l'outil est pédagogique. Vérifiez l'accord collectif applicable et les procédures de votre organisation.</div>
+    </section>
+  </main>
+
+  <dialog id="helpDialog"><button class="close" id="closeHelp" aria-label="Fermer">×</button><h2>Mode d'emploi</h2><ol><li>Constituez des trinômes.</li><li>Préparez les rôles séparément pendant 5 minutes.</li><li>Jouez l'entretien pendant la durée choisie.</li><li>L'observateur coche les comportements constatés.</li><li>Débriefez : faits, effets, alternative.</li></ol></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
